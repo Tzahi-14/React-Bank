@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 class Categories extends Component {
 
         filterByCategory () {
-        let dataByCategoryArr =[]
         let dataByCategoryObj = {}
         this.props.data.map((transaction) =>{
             if(dataByCategoryObj[transaction.category]){
@@ -12,11 +11,13 @@ class Categories extends Component {
             }
             else{
                 dataByCategoryObj[transaction.category] = {category: transaction.category ,amount: transaction.amount} 
-                dataByCategoryArr = Object.values(dataByCategoryObj)
             }
-
+            
             
         })
+        
+        let dataByCategoryArr = Object.values(dataByCategoryObj)
+        console.log(dataByCategoryArr)
         return dataByCategoryArr
     }
 

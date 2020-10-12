@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Transcation from './Transcation';
+import "../style/style.css" 
 // import { Link } from 'react-router-dom';
 
-class Transcations  extends Component {
-
+class Transcations extends Component {
 
     render() {
         return (
