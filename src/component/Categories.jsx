@@ -25,9 +25,9 @@ class Categories extends Component {
     render() {
         let invokeFunc = this.filterByCategory()
         return (
-            <div>
+            <div id="categories">
                 {invokeFunc.map(transaction=>{
-                    return <div key={transaction.category}> {transaction.category} {transaction.amount}</div>
+                    return <div className="categorie" key={transaction.category}> <h1>Categorie: {transaction.category}, Total amount: {transaction.amount}</h1></div>
                 })}
             </div>
         )

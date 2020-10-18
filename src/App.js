@@ -7,8 +7,7 @@ import axios from 'axios';
 import Categories from './component/Categories';
 import Snackbar from "@material-ui/core/Snackbar"
 import Button from '@material-ui/core/Button'
-
-
+import Header from './component/Header'
 
 
 export class App extends Component {
@@ -17,8 +16,7 @@ export class App extends Component {
     this.state = {
       snackBarOpen: false,
       snackBarMsg: "",
-      data:[],
-      balance: 0,
+      data: [],
     }
   }
 
@@ -27,7 +25,7 @@ export class App extends Component {
   }
 
   async postTransactions(obj) {
-    return await axios.post("http://localhost:4000/transaction",obj)
+    return await axios.post("http://localhost:4000/transaction", obj)
   }
 
   async componentDidMount() {
@@ -35,19 +33,19 @@ export class App extends Component {
     this.setState({ data: response.data })
   }
 
-  reducer = (accumulator, currentValue) => accumulator + currentValue ;
+  reducer = (accumulator, currentValue) => accumulator + currentValue;
 
-   deleteT = async (id) =>{
-   const deleteTransaction = await axios.delete(`http://localhost:4000/transaction/${id}`)
-   console.log(deleteTransaction.data._id)
+  deleteT = async (id) => {
+    const deleteTransaction = await axios.delete(`http://localhost:4000/transaction/${id}`)
+    console.log(deleteTransaction.data._id)
     let currentData = [...this.state.data]
-    const index = currentData.findIndex(a=>a._id===id)
+    const index = currentData.findIndex(a => a._id === id)
     console.log(index)
-    currentData.splice(index,1)
+    currentData.splice(index, 1)
     this.setState({
-      data:currentData,
-      snackBarOpen:true,
-      snackBarMsg:"Transaction removed successfully"
+      data: currentData,
+      snackBarOpen: true,
+      snackBarMsg: "Transaction removed successfully"
     })
   }
 
@@ -58,7 +56,7 @@ export class App extends Component {
     currentData.push(data.data)
     this.setState({
       data: currentData,
-      snackBarOpen:true,
+      snackBarOpen: true,
       snackBarMsg: "Transaction added successfully"
     })
   }
@@ -67,31 +65,33 @@ export class App extends Component {
     this.setState({ snackBarOpen: false })
   }
 
+  calcBalance = ()=>{
+    return this.state.data.map(a => a.amount).reduce(this.reducer, 0)
+  }
 
   render() {
-    const balance = this.state.data.map(a => a.amount).reduce(this.reducer,0)
+    const balance = this.calcBalance()
     return (
       <Router>
-      <div>
-        <Snackbar
+        <Header />
+        <div>
+          <Snackbar
             open={this.state.snackBarOpen}
             autoHideDuration={4000}
             onClose={this.snackBarClose}
             message={<span id="snackbar-msg">{this.state.snackBarMsg}</span>}
             action={
-              <Button onClick={this.snackBarClose} style={{backgroundColor: "yellow"}}> X </Button>
+              <Button onClick={this.snackBarClose} style={{ backgroundColor: "yellow" }}> X </Button>
             }
           />
-    <div id="home"> Hellow Tzahi, your Balance is: {balance>500? <span style={{color:"green"}}>{balance}</span>:<span style={{color:"red"}}>{balance}</span>} </div>
-      <Link to="/operations" id="operations-click"> Add transcation </Link>
-      <Link to="/transcations" id="transcations-click"> Check all transcations </Link>
-      <Link to="/categories" id="categories-click">  Transcations by categories </Link>
+          <h1 id="bank">Be the bank</h1>
+          <div id="home"> Hellow Tzahi, your Balance is: {balance > 500 ? <span style={{ color: "green" }}>{balance}</span> : <span style={{ color: "red" }}>{balance}</span>} </div>
 
-        <Route exact path="/transcations"  render ={() => <Transcations data={this.state.data} deleteT={this.deleteT} />} />
-        <Route exact path="/operations"  render ={() =><Operations print={this.print} getInputs={this.getInputs} data={this.state.data} />} />
-        <Route exact path="/categories"  render ={() =><Categories data={this.state.data}/>} />
+          <Route exact path="/transcations" render={() => <Transcations data={this.state.data} deleteT={this.deleteT} />} />
+          <Route exact path="/operations" render={() => <Operations  print={this.print} getInputs={this.getInputs} data={this.state.data} balance={balance}/>} />
+          <Route exact path="/categories" render={() => <Categories data={this.state.data} />} />
 
-      </div>
+        </div>
       </Router>
     )
   }

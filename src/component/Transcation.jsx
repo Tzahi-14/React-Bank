@@ -12,8 +12,8 @@ class Transcation  extends Component {
     render() {
         const transcation = this.props.transaction
         return (
-            <div>
-                     <span  id="transaction"> Amount {transcation.amount>0? <span style={{color:"green"}}>{transcation.amount}</span>: <span style={{color:"red"}}>{transcation.amount}</span> }</span>
+            <div id="all-transactions">
+                     <span  className="transaction"> Amount {transcation.amount>0? <span style={{color:"green"}}>{transcation.amount}</span>: <span style={{color:"red"}}>{transcation.amount}</span> }</span>
                     <span> Vendor: {transcation.vendor}</span>
                     <span> Category {transcation.category}</span> 
                     <Button
