@@ -43,9 +43,9 @@ class Operations extends Component {
     render() {
         return (
             <div className="oprations-inputs">
-                <div>Add category : <Input type="text" id="vendor-input" placeholder="Vendor" name="vendor" onChange={this.inputHandler} style={{ margin: "1rem" }} /></div>
-                <div>Add Vendor : <Input type="text" id="category-input" placeholder="Category" name="category" style={{ margin: "1rem" }} onChange={this.inputHandler} /></div>
-                <div>Add amount : <Input type="number" id="amount-input" placeholder="Enter Your amount" name="amount" style={{ margin: "1rem" }} onChange={this.inputHandler} /></div>
+                <div>Add Vendor : <Input type="text" id="vendor-input" placeholder="Vendor" name="vendor" onChange={this.inputHandler} style={{ margin: "1rem" }} /></div>
+                <div>Add Category : <Input type="text" id="category-input" placeholder="Category" name="category" style={{ margin: "1rem" }} onChange={this.inputHandler} /></div>
+                <div>Add Amount : <Input type="number" id="amount-input" placeholder="Enter Your amount" name="amount" style={{ margin: "1rem" }} onChange={this.inputHandler} /></div>
                 <Link to="/transcations"><Button onClick={this.deposit} style={{ margin: "1rem" }} variant="contained" color="primary" >Deposit</Button></Link>
                 <Link to="/transcations"><Button onClick={this.withdraw} style={{ margin: "1rem" }} variant="contained" color="secondary" >Withdraw</Button></Link>
             </div> 

@@ -62,8 +62,21 @@ export class App extends Component {
     this.setState({ snackBarOpen: false })
   }
 
-  calcBalance = ()=>{
+  calcBalance = () => {
     return this.state.data.map(a => a.amount).reduce(this.reducer, 0)
+  }
+
+  getTimeOfDay = () => {
+    const dayTime = new Date().getHours()
+    if (dayTime > 6 && dayTime < 11) {
+      return "morning"
+    }
+    else if (dayTime > 11 && dayTime < 17) {
+      return "after-noon"
+    }
+    else {
+      return "evening"
+    }
   }
 
   render() {
@@ -82,10 +95,10 @@ export class App extends Component {
             }
           />
           <h1 id="bank">Be the bank</h1>
-          <div id="home"> Hellow Tzahi, your Balance is: {balance > 500 ? <span style={{ color: "green" }}>{balance}</span> : <span style={{ color: "red" }}>{balance}</span>} </div>
+          <div id="home"> Hellow Tzahi good {this.getTimeOfDay()}, your Balance is: {balance > 500 ? <span style={{ color: "green" }}>{balance}</span> : <span style={{ color: "red" }}>{balance}</span>} </div>
 
           <Route exact path="/transcations" render={() => <Transcations data={this.state.data} deleteT={this.deleteT} />} />
-          <Route exact path="/operations" render={() => <Operations  print={this.print} getInputs={this.getInputs} data={this.state.data} balance={balance}/>} />
+          <Route exact path="/operations" render={() => <Operations print={this.print} getInputs={this.getInputs} data={this.state.data} balance={balance} />} />
           <Route exact path="/categories" render={() => <Categories data={this.state.data} />} />
 
         </div>
