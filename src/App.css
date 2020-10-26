@@ -1,0 +1,48 @@
+#operations-click {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+#transcations-click {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+#home {
+  margin: 1rem;
+  padding: 1rem;
+  justify-content: center;
+  text-align: center;
+  background-color: coral;
+}
+
+body {
+  /* background-color: rgb(0, 153, 255); */
+  background-image: url("https://www.ezcount.co.il/wp-content/uploads/2020/01/when-to-open-business-bank-account.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#bank{
+  text-align: center;
+}
+
+.oprations-inputs{
+  text-align: center;
+}
+
+#all-transactions{
+  text-align: center;
+}
+
+#categories{
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.categorie{
+  margin: 1rem;
+  box-shadow: 1rem 1rem 3rem #1b1b1a;
+  background-color: rgb(12, 154, 197);
+}
