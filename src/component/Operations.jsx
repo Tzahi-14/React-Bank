@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Input } from '@material-ui/core';
 import Button from '@material-ui/core/Button'
-import Snackbar from "@material-ui/core/Snackbar"
-
-
 
 class Operations extends Component {
     constructor() {
@@ -15,7 +12,7 @@ class Operations extends Component {
     }
 
     deposit = () => {
-        let obj = {
+        const obj = {
             amount: parseInt(this.state.amount),
             vendor: this.state.vendor,
             category: this.state.category
@@ -24,7 +21,6 @@ class Operations extends Component {
     }
 
     withdraw = () => {
-        console.log(this.props.balance)
         if (this.props.balance - this.state.amount > 0) {
             let obj = {
                 amount: parseInt(-this.state.amount),
@@ -37,11 +33,8 @@ class Operations extends Component {
             alert ("You can't stay with negative balance")
         }
     }
-
-
     inputHandler = (e) => {
         const { value, name } = e.target
-        // console.log(name)
         this.setState({
             [name]: value
         })
@@ -55,7 +48,7 @@ class Operations extends Component {
                 <div>Add amount : <Input type="number" id="amount-input" placeholder="Enter Your amount" name="amount" style={{ margin: "1rem" }} onChange={this.inputHandler} /></div>
                 <Link to="/transcations"><Button onClick={this.deposit} style={{ margin: "1rem" }} variant="contained" color="primary" >Deposit</Button></Link>
                 <Link to="/transcations"><Button onClick={this.withdraw} style={{ margin: "1rem" }} variant="contained" color="secondary" >Withdraw</Button></Link>
-            </div>
+            </div> 
         )
     }
 

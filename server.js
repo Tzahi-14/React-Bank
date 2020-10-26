@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require("path")
-const api = require ('./server/api')
+const api = require ('./server/routes/api')
 const app = express()
 const mongoose = require("mongoose")
 mongoose.connect("mongodb://localhost/bank",{userNewUrlParser: true,useUnifiedTopology: true})

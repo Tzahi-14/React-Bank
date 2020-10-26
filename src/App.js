@@ -37,10 +37,8 @@ export class App extends Component {
 
   deleteT = async (id) => {
     const deleteTransaction = await axios.delete(`http://localhost:4000/transaction/${id}`)
-    console.log(deleteTransaction.data._id)
     let currentData = [...this.state.data]
     const index = currentData.findIndex(a => a._id === id)
-    console.log(index)
     currentData.splice(index, 1)
     this.setState({
       data: currentData,
@@ -51,7 +49,6 @@ export class App extends Component {
 
   getInputs = async (obj) => {
     const data = await this.postTransactions(obj)
-    console.log(data.data)
     let currentData = [...this.state.data]
     currentData.push(data.data)
     this.setState({

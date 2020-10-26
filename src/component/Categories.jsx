@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 
 class Categories extends Component {
-
         filterByCategory () {
         let dataByCategoryObj = {}
         this.props.data.map((transaction) =>{
@@ -11,17 +10,11 @@ class Categories extends Component {
             }
             else{
                 dataByCategoryObj[transaction.category] = {category: transaction.category ,amount: transaction.amount} 
-            }
-            
-            
-        })
-        
+            }    
+        }) 
         let dataByCategoryArr = Object.values(dataByCategoryObj)
-        console.log(dataByCategoryArr)
         return dataByCategoryArr
     }
-
-
     render() {
         let invokeFunc = this.filterByCategory()
         return (
@@ -32,10 +25,5 @@ class Categories extends Component {
             </div>
         )
     }
-
-
-
-
 }
-
 export default Categories  
